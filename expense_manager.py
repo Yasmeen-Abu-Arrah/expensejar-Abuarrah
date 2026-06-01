@@ -4,7 +4,7 @@ class ExpenseManager():
     def load(self, filepath: str) -> list:
         try:
             with open(filepath, "r", encoding="utf-8") as f:
-                read = csv.DictWriter(f)
+                read = csv.DictReader(f)
                 content = [r for r in read]
                 return content 
         except FileNotFoundError: return []
@@ -12,8 +12,8 @@ class ExpenseManager():
     def save(self, expenses: list, filepath: str) -> None:
         with open(filepath, "w", encoding="utf-8") as f:
             field_names = ["date", "category", "amount", "description"]
-            write = csv.DictWriter(f)
-            write.writeheader(field_names)
+            write = csv.DictWriter(f, fieldnames=field_names)
+            write.writeheader()
             write.writerows(expenses)
         print(f"Successfully saved :)")
 
