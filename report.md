@@ -1,17 +1,17 @@
 # ExpenseJar — Personal Expense Tracker
 **Course:** Python Programming 
 
-
 ## 1. Project Title & Member
-**Project:** ExpenseJar — Personal Expense Tracker 
-**Student:** Yasmeen Ahmad Rafeeq Abuarrah — 202211471 
-**Email:** y.abuarrah1@gmail.com 
-**GitHub Repository:** https://github.com/Yasmeen-Abu-Arrah/expensejar-Abuarrah.git 
+**project:** ExpenseJar — Personal Expense Tracker  
+**Student:** Yasmeen Ahmad Abu Arrah - 202211471  
+**Email:** y.abuarra1@gmail.com  
+**GitHub Repo:** https://github.com/Yasmeen-Abu-Arrah/expensejar-Abuarrah.git 
 
 
 ## 2. Project Overview
-A 3–5 sentence description of what your application does.
-
+The ExpenseJar is a Python-based application that enables users to keep track of their daily expenses. This application is capable of reading and writing data (date, category, amount, and description) from a CSV file in order to maintain data persistence even when not using the application.  
+Additionally, it enables the addition of an expense transaction provided with data validation, calculating monthly expenditure in each category and determining which expense was the most costly. In order to make it easier for the user to interpret the results generated, ExpenseJar provides visualization of data using a pie chart and a bar graph, both created by Matplotlib library.   
+Other functionalities include checking whether a certain category has reached its budget limit, searching the records using a keyword in description, and forecasting the monthly expenditure of the user based on his/her spending habits.
 
 ## 3. Libraries Used
 | Library | Version | How it was used |
@@ -32,8 +32,9 @@ A 3–5 sentence description of what your application does.
 
 ## 4. Modules Description
 ### expense_manager.py
-Contains the ExpenseManager class. Its the core of the idea and the application. Use CSV file to handles all operation of data like, loading, saving, adding after validation, and computing the final statistics.
-total_by_category() and monthlu_totals() are the most important methods in this file. They are use dict.get(key,0) pattern to accumlate spending total.
+Contains the ExpenseManager class. Its the core of the idea and the application. Use CSV file to handles all operation of data like, loading, saving, adding after validation, and computing the final statistics.  
+total_by_category() and monthlu_totals() are the most important methods in this file. They are use dict.get(key,0) pattern to accumlate spending total.  
+In addition, find the highest amount, check the budget by category, search using keyword, and pretict the total cost at the end of the month.  
 
 ### visualizer.py
 Contains the Visualizer class. It takes the loaded data (expenses list) to produce Matplotib charts. The first is a pie chart, that show distributed spending across categories by the category_pie() method. The second is a bar chart, that show the total spending per month by monthly_bar() method.
@@ -72,7 +73,7 @@ except ValueError as e:
 from expense_manager import ExpenseManager
 em = ExpenseManager()
 try:
-    em.add_expense([], "2026-05-10", "Food", 0, "Free lunch?")
+    em.add_expense([], "2026-05-10", "Food", 0, "Free lunch")
     print("No error raised — FAIL")
 except ValueError as e:
     print(f"Caught: {e} — PASS")
@@ -104,6 +105,7 @@ print("PASS")
 **Expected Output:** the dict with amount `"75.5"`  
 **Actual Output:** correct record returned ✅
 
+**Code snippet used to verify:**
 ```python
 from expense_manager import ExpenseManager
 em = ExpenseManager()
@@ -125,7 +127,56 @@ print("PASS")
 **Actual Output:** ran successfully with no errors ✅
 
 
-<!-- the images -->
+### Test 6: check_budget() — category exceeded the limit
+**Input:** Food budget = 50₪, actual spending = 108.50₪  
+**Expected Output:** string contains "WARNING" and "Food"  
+**Actual Output:** WARNING  Food: spent 108.50 of 50.00 limit ✅
+
+**Code snippet used to verify:**
+```python
+from expense_manager import ExpenseManager
+em = ExpenseManager()
+sample = [
+    {"date": "2026-06-06", "category": "Food", "amount": "18.50", "description": "Cafeteria"},
+    {"date": "2026-06-03", "category": "Food", "amount": "90.00", "description": "Grocery"},
+]
+try:
+    warn = em.check_budget(sample, {"Food": 50})
+    has_warn = any("Warning!" in w and "Food" in w for w in warn)
+    if not has_warn:
+        print(f"No warning found - FAIL")
+    else: print ("PASS")
+except Exception as e:
+    print(f"Unexpected error: {e} — FAIL")
+```
+
+
+### Test 7: search() — case-insensitive keyword match
+**Input:** keyword = "LUNCH", description in data = "Cafeteria lunch"  
+**Expected Output:** 1 result returned  
+**Actual Output:** 1 result found ✅
+
+**Code snippet used to verify:**
+```python
+from expense_manager import ExpenseManager
+em = ExpenseManager()
+sample = [
+    {"date": "2026-06-06", "category": "Food",      "amount": "18.50", "description": "Cafeteria lunch"},
+    {"date": "2026-06-05", "category": "Transport",  "amount": "5.00",  "description": "Bus ticket"},
+]
+try:
+    results = em.search(sample, "LUNCH")
+    if len(results) != 1:
+        print(f"Expected 1 result, got {len(results)} — FAIL")
+    elif results[0]["description"] != "Cafeteria lunch":
+        print("Wrong record returned — FAIL")
+    else:
+        print("PASS")
+except Exception as e:
+    print(f"Unexpected error: {e} — FAIL")
+```
+
+
 ## 6. Screenshots
 ### Category Pie Chart
 ![Pie](screenshots/category_pie.png)
@@ -140,17 +191,18 @@ print("PASS")
 *Full output of running python main.py*
 
 
-<!-- count -->
 ## 7. Invidual Contributions
 | Student | ID | Files | Commit Count | GitHub Username |
 |---|---|---|---|---|
-| Yasmeen Ahmad Rafeeq Abuarrah | 202211471 | All files | ? | Yasmeen-Abu-Arrah |
+| Yasmeen Ahmad Rafeeq Abuarrah | 202211471 | All files | 13 | Yasmeen-Abu-Arrah |
 
-<!-- I need to rewrite it -->
+
 ## 8. Challenges & What You Learned
-**Challenge:** :)
-**What I learned:** I learned a new pattern to accumulating totals in a dictionary --> dict.get(key,0).
-(matpoltlib / req.s / csv / images in md files :)
+**Challenge - My Virtual Environment Stopped Working After I Renamed the Folder**
+When I renamed my project folder to include my name. My pip stopped working. I could not use "pip freeze". I found out that the virtual environment remembers the folder path. So when I renamed the folder it broke the environment. To fix this I got rid of the ".venv" and made a new one in the renamed folder. Then I installed matplotlib again before I made "requirements.txt".
+
+**What I Learned**
+I learned about reading and writing CSV files. I also learned about using "dict.get(key, 0)" to add up totals without having to check if something exists. I learned how to make charts with matplotlib and how to make "requirements.txt" using "pip freeze". The project was a learning experience, for me and I got to learn about these new things, like matplotlib and "pip freeze" and how to use them.
 
 
 ## 9. How to Run
