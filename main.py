@@ -51,6 +51,12 @@ def main():
     warn = em.check_budget(expenses, budget)
     for w in warn: print(" ",w)
 
+    print("\n Search")
+    results = em.search(expenses, "lunch")
+    print(f"Found {len(results)} result/s for 'lunch':")
+    for res in results:
+        print(f"{res["date"]} {res["description"]} {res["amount"]}")
+
 
     print("\nDone!")
 

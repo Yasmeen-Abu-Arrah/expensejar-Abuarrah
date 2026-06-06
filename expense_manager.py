@@ -67,3 +67,10 @@ class ExpenseManager():
                 warn.append(f"OK {cat}: spent {spent:.2f} of {limit:.2f} {remain:.2f} remaining :) ")
         return warn
     
+    def search(self, expenses: list, keyword: str) -> list:
+        if not keyword:
+            raise ValueError("Its empty :)")
+        keyword_l = keyword.lower()
+        results = [exp for exp in expenses if keyword_l in exp["description"].lower()]
+        return results
+
