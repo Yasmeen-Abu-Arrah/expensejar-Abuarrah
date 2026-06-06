@@ -1,5 +1,7 @@
 import csv
 
+VALID_CATEGORIES = ["Food", "Transport", "Books", "Entertainment", "Health", "Other"]
+
 class ExpenseManager():
     def load(self, filepath: str) -> list:
         try:
@@ -10,7 +12,7 @@ class ExpenseManager():
         except FileNotFoundError: return []
     
     def save(self, expenses: list, filepath: str) -> None:
-        with open(filepath, "w", encoding="utf-8") as f:
+        with open(filepath, "w", newline="", encoding="utf-8") as f:
             field_names = ["date", "category", "amount", "description"]
             write = csv.DictWriter(f, fieldnames=field_names)
             write.writeheader()
@@ -18,7 +20,6 @@ class ExpenseManager():
         print(f"Successfully saved :)")
 
     def add_expense(self, expenses: list, date_str: str, category: str, amount: float, description: str) -> list:
-        VALID_CATEGORIES = ["Food", "Transport", "Books", "Entertainment", "Health", "Other"]
         if category not in VALID_CATEGORIES:
             raise ValueError(f"Category must be one of {VALID_CATEGORIES}")
         
@@ -38,8 +39,6 @@ class ExpenseManager():
         for exp in expenses:
             cat = exp["category"]
             totals[cat] = round(totals.get(cat, 0) + float(exp["amount"]), 2)
-            # totals.get(cat,0) if doesn't exist --> return 0
-            # why 2 num.s 0f digits?? 
         return totals
     
     def monthly_totals(self, expenses: list) -> dict:
