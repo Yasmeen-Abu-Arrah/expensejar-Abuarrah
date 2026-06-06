@@ -43,6 +43,15 @@ def main():
     viz.category_pie(expenses)
     viz.monthly_bar(expenses)
 
+    # Additional
+    # These are just values for testing :)
+
+    print("\n Budget Check:") 
+    budget = {"Food": 300, "Entertainment": 100, "Transport": 200}
+    warn = em.check_budget(expenses, budget)
+    for w in warn: print(" ",w)
+
+
     print("\nDone!")
 
 if __name__ == "__main__":

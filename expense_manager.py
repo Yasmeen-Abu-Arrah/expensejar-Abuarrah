@@ -52,3 +52,18 @@ class ExpenseManager():
         if not expenses:
             return None
         return max(expenses, key=lambda e: float(e["amount"]))
+    
+
+    # Additional
+    def check_budget(self, expenses: list, budget: dict) -> list:
+        warn = []
+        totals = self.total_by_category(expenses)
+        for cat, limit in budget.items():
+            spent = totals.get(cat,0)
+            if spent > limit:
+                warn.append(f"Warning! {cat}: spent {spent:.2f} of {limit:.2f} limit")
+            else:
+                remain = round(limit - spent, 2)
+                warn.append(f"OK {cat}: spent {spent:.2f} of {limit:.2f} {remain:.2f} remaining :) ")
+        return warn
+    
