@@ -57,6 +57,10 @@ def main():
     for res in results:
         print(f"{res["date"]} {res["description"]} {res["amount"]}")
 
+    print("Month-End Prediction :)")
+    pred = em.predict_month(expenses)
+    print(pred)
+
 
     print("\nDone!")
 

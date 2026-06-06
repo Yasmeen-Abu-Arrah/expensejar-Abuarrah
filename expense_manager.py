@@ -74,3 +74,28 @@ class ExpenseManager():
         results = [exp for exp in expenses if keyword_l in exp["description"].lower()]
         return results
 
+    def predict_month(self, expenses: list) -> dict:
+        import calendar
+        from datetime import date
+
+        today = date.today()
+        current_month = today.strftime("%Y-%m")
+        dayes_in_month = calendar.monthrange(today.year, today.month)[1]
+        days_passed = today.day
+        this_month = [exp for exp in expenses if exp["date"].startswith(current_month)]
+        spent_so_far = round(sum(float(exp["amount"]) for exp in this_month),2)
+        daily_avg = round(spent_so_far / days_passed, 2)
+        days_left = dayes_in_month - days_passed
+        prediction = round(daily_avg * dayes_in_month, 2)
+
+        return {
+            "spent_so_far": spent_so_far,
+            "daily_avg": daily_avg,
+            "dayes_passed": days_passed,
+            "dayes_left": days_left,
+            "dayes_in_month": dayes_in_month,
+            "dayes_passed": days_passed,
+            "prediction": prediction
+        }
+
+
