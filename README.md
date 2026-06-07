@@ -3,7 +3,7 @@
 
 <p align="center">
   <a href="https://git.io/typing-svg">
-    <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&pause=3000&color=1D9E75&width=900&lines=ExpenseJar+💰+Personal+Expense+Tracker;Track+%7C+Analyze+%7C+Visualize+Your+Spending+📊;Built+with+Python+%2B+OOP+%2B+Matplotlib+🐍;By+Yasmeen+Ahmad+Rafeeq+Abuarra+·+✨">
+    <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&pause=3000&color=1D9E75&width=900&lines=ExpenseJar+💰+Personal+Expense+Tracker;Track+%7C+Analyze+%7C+Visualize+Your+Spending+📊;Built+with+Python+%2B+OOP+%2B+Matplotlib+🐍;By+Yasmeen+Ahmad+Abuarra+·+✨">
   </a>
 </p>
 
@@ -24,7 +24,7 @@
 | :--- | :--- |
 | 👤 **Name** | Yasmeen Ahmad Abuarra |
 | 🆔 **Student ID** | 202211471 |
-| 📧 **Email** | y.abuarra@student.aaup.edu |
+| 📧 **Email** | y.abuarrah1@gmail.com |
 | 📚 **Course** | Python Programming — Application Chapter |
 | 👤 **Instrutor** | Mr. Hussein Younis |
 
@@ -67,6 +67,7 @@ ExpenseJar_Abuarra/
 ├── expenses.csv            ← Expense records
 ├── requirements.txt        ← pip freeze output
 ├── report.md               ← Full project report
+├── README.md               ← readme file project
 └── screenshots/
     ├── category_pie.png
     ├── monthly_bar.png
