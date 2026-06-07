@@ -14,21 +14,10 @@ Additionally, it enables the addition of an expense transaction provided with da
 Other functionalities include checking whether a certain category has reached its budget limit, searching the records using a keyword in description, and forecasting the monthly expenditure of the user based on his/her spending habits.
 
 ## 3. Libraries Used
-| Library | Version | How it was used |
-|---|---|---|
-| csv | built-in | Loading and saving expense records |
-| contourpy | 1.3.3 | Calculating and contouring cross-sections and of data (visualization) |
-| cycler | 0.12.1 | Manage customizable cycles of colors and styles in plots |
-| fonttools | 4.63.0 | Manipulation and conversion of font formats for text rendering |
-| kiwisolver | 1.5.0 | Efficient layout resolution for plots and widgets |
-| matplotlib | 3.10.9 | Pie and bar charts for categories and monthly totals |
-| numpy | 2.4.6 | Numerical operations and efficient multi-dimensional array manipulation |
-| packaging | 26.2 | Utilities for finding information about Python packages |
-| pillow | 12.2.0 | Loading, processing, saving and working with image file formats |
-| pyparsing | 3.3.2 | Parsing texts and mathematical expression handling inside charts |
-| python-dateutil | 2.9.0.post0 | Additional features for date and time calculations in time-series axes |
-| six | 1.17.0 | Utilities supporting Python runtime environments |
-
+| Library | Version | How it was used |  
+|---|---|---|  
+| csv | built-in | Loading and saving expense records from/to CSV |  
+| matplotlib | 3.10.9 | Pie and bar charts for categories and monthly totals |  
 
 ## 4. Modules Description
 ### expense_manager.py
@@ -194,7 +183,7 @@ except Exception as e:
 ## 7. Invidual Contributions
 | Student | ID | Files | Commit Count | GitHub Username |
 |---|---|---|---|---|
-| Yasmeen Ahmad Rafeeq Abuarrah | 202211471 | All files | 13 | Yasmeen-Abu-Arrah |
+| Yasmeen Ahmad Rafeeq Abuarrah | 202211471 | All files | 15 | Yasmeen-Abu-Arrah |
 
 
 ## 8. Challenges & What You Learned
@@ -214,7 +203,7 @@ pip install -r requirements.txt
 
 ### Create sample data
 ```bash
-```python create_sample_data.py
+python create_sample_data.py
 ```
 
 ### Run the app
