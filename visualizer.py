@@ -29,6 +29,7 @@ class Visualizer():
         ax.set_xlabel("Month")
         ax.set_ylabel("Total Spent (₪)")
         ax.set_title("Monthly Spending", fontsize=14, fontweight="bold")
+        ax.set_xticks(range(len(months))) #To prevent warning
         ax.set_xticklabels(months, rotation=30)
 
         for i, m in enumerate(months):

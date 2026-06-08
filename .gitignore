@@ -6,3 +6,5 @@ __pycache__/
 # .DS_Store & *.pyc
 # Just for follow the instructions.
 # While I don't actully need it.
+
+.vscode
