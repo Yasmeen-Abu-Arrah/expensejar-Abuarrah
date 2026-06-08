@@ -22,6 +22,31 @@ DEFAULT_BUDGETS = {
 VALID_CATEGORIES = ["Food", "Transport", "Books", "Entertainment", "Health", "Other"]
 
 
+@app.route("/")
+def index():
+    return """
+    <h1 align="center">💰ExpenseJar </h1>
+    <h2 align="center"> Personal Expense Tracker API </h2>
+    <br>
+    <ul>
+        <li>GET    ---  /expenses</li>    
+        <li>GET    ---  /expenses/by-category</li>
+        <li>GET    ---  /expenses/category/[name]</li>
+        <li>GET    ---  /expenses/by-month</li>
+        <li>GET    ---  /expenses/month/[month]</li>
+        <li>GET    ---  /expenses/highest</li>
+        <li>GET    ---  /expenses/search</li>
+        <li>GET    ---  /expenses/budget</li>
+        <li>GET    ---  /expenses/predict</li>
+        <li>GET    ---  /expenses/summary</li>
+        <li>GET    ---  /expenses/chart/pie</li>
+        <li>GET    ---  /expenses/chart/bar</li>
+        <li>POST   ---  /expenses</li>
+        <li>DELETE ---  /expenses/[int:index]</li>
+    </ul>
+    """
+
+
 @app.route("/expenses", methods=["GET"])
 def get_expenses():
     expenses = em.load(DATA_FILE)

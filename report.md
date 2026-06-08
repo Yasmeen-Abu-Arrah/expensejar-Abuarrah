@@ -1,5 +1,6 @@
-# ExpenseJar — Personal Expense Tracker
-**Course:** Python Programming 
+# ExpenseJar — Personal Expense Tracker 💰
+**Course:** Python Programming   
+**Instructor:** Mr. Hussein Younis
 
 ## 1. Project Title & Member
 **project:** ExpenseJar — Personal Expense Tracker  
@@ -9,37 +10,41 @@
 
 
 ## 2. Project Overview
-The ExpenseJar is a Python-based application that enables users to keep track of their daily expenses. This application is capable of reading and writing data (date, category, amount, and description) from a CSV file in order to maintain data persistence even when not using the application.  
-Additionally, it enables the addition of an expense transaction provided with data validation, calculating monthly expenditure in each category and determining which expense was the most costly. In order to make it easier for the user to interpret the results generated, ExpenseJar provides visualization of data using a pie chart and a bar graph, both created by Matplotlib library.   
+The ExpenseJar is a Python-based application that enables users to keep track of their daily expenses. This application is capable of reading and writing data (date, category, amount, and description) from a `CSV` file in order to maintain data persistence even when not using the application.  
+Additionally, it enables the addition of an expense transaction provided with data validation, calculating monthly expenditure in each category and determining which expense was the most costly. In order to make it easier for the user to interpret the results generated, ExpenseJar provides visualization of data using a pie chart and a bar graph, both created by `Matplotlib` library.   
 Other functionalities include checking whether a certain category has reached its budget limit, searching the records using a keyword in description, and forecasting the monthly expenditure of the user based on his/her spending habits.
 
 ## 3. Libraries Used
 | Library | Version | How it was used |  
 |---|---|---|  
-| csv | built-in | Loading and saving expense records from/to CSV |  
-| matplotlib | 3.10.9 | Pie and bar charts for categories and monthly totals |  
+| csv | built-in | Loading and saving expense records from/to `CSV` |  
+| matplotlib | 3.10.9 | Pie and bar charts for categories and monthly totals | 
+| Flask | 3.1.3 | REST API routes (GET, POST, DELETE) |
 
 ## 4. Modules Description
-### expense_manager.py
-Contains the ExpenseManager class. Its the core of the idea and the application. Use CSV file to handles all operation of data like, loading, saving, adding after validation, and computing the final statistics.  
-total_by_category() and monthlu_totals() are the most important methods in this file. They are use dict.get(key,0) pattern to accumlate spending total.  
+### `expense_manager.py`
+Contains the `ExpenseManager` class. Its the core of the idea and the application. Use `CSV` file to handles all operation of data like, loading, saving, adding after validation, and computing the final statistics.  
+`total_by_category()` and `month_totals()` are the most important methods in this file. They are use dict.`get(key,0)` pattern to accumlate spending total.  
 In addition, find the highest amount, check the budget by category, search using keyword, and pretict the total cost at the end of the month.  
 
-### visualizer.py
-Contains the Visualizer class. It takes the loaded data (expenses list) to produce Matplotib charts. The first is a pie chart, that show distributed spending across categories by the category_pie() method. The second is a bar chart, that show the total spending per month by monthly_bar() method.
+### `visualizer.py`
+Contains the `Visualizer` class. It takes the loaded data (expenses list) to produce `Matplotib` charts. The first is a pie chart, that show distributed spending across categories by the `category_pie()` method. The second is a bar chart, that show the total spending per month by `monthly_bar()` method.
 
-### main.py
-The main code to work. Actully, its the entry point of the application. It runs all steps: loading the CSV, adding a new expense, printing a summery, and displaying charts. All steps work as pipeline.
+### `main.py`
+The main code to work. Actully, its the entry point of the application. It runs all steps: loading the `CSV`, adding a new expense, printing a summery, and displaying charts. All steps work as pipeline.
 
-### create_sample_data.py
-Its a script that no class required. Its gendreate a realistic expenses.csv file with random data spread over the last 60 days. It should be run once befor the main.py file
+### `create_sample_data.py`
+Its a script that no class required. Its gendreate a realistic expenses.csv file with random data spread over the last 60 days. It should be run once befor the `main.py` file
+
+### `application.py`
+Its a simple web API that uses GET/POST/DELETE to process data, implementing all the methods found in the `expences_manager.py`.
 
 
 ## 5. Test Cases
-### Test 1: add_expense() — invalid category
-**Input:** category = "Clothes" (not in VALID_CATEGORIES)
-**Expected Output:** ValueError raised
-**Actual Output:** ValueError: Category must be one of [...] ✅
+### Test 1: `add_expense()` — invalid category
+**Input:** category = "Clothes" (not in VALID_CATEGORIES)  
+**Expected Output:** `ValueError raised`  
+**Actual Output:** `ValueError: Category must be one of [...] ✅`
 
 **Code snippet used to verify:**
 ```python
@@ -52,10 +57,10 @@ except ValueError as e:
     print(f"Caught: {e} — PASS")
 ```
 
-### Test 2: add_expense() — invalid category
-**Input:** amount = 0
-**Expected Output:** ValueError raised
-**Actual Output:** ValueError: Amount must be greater than 0 ✅
+### Test 2: `add_expense()` — invalid category
+**Input:** amount = 0  
+**Expected Output:** `ValueError raised`
+**Actual Output:** `ValueError: Amount must be greater than 0 ✅`  
 
 **Code snippet used to verify:**
 ```python
@@ -68,10 +73,10 @@ except ValueError as e:
     print(f"Caught: {e} — PASS")
 ```
 
-### Test 3: total_by_category() — verify totals match manual sum
+### Test 3: `total_by_category()` — verify totals match manual sum
 **Input:** a small list with 3 known Food entries (10, 20, 30 ₪)  
-**Expected Output:** {"Food": 60.0} 
-**Actual Output:** {"Food": 60.0} ✅
+**Expected Output:** {"Food": `60.0`} 
+**Actual Output:** `{"Food": 60.0} ✅`
 
 **Code snippet used to verify:**
 ```python
@@ -92,7 +97,7 @@ print("PASS")
 ### Test 4: `find_highest()` — confirm it returns the correct record
 **Input:** a list where the highest amount is 75.5 (Books)  
 **Expected Output:** the dict with amount `"75.5"`  
-**Actual Output:** correct record returned ✅
+**Actual Output:** `correct record returned ✅`
 
 **Code snippet used to verify:**
 ```python
@@ -110,16 +115,16 @@ print("PASS")
 ```
 
 
-### Test 5: main.py run — no errors, both charts appear
+### Test 5: `main.py` run — no errors, both charts appear
 **Input:** run python create_sample_data.py then python main.py 
 **Expected Output:** terminal prints all 4 steps, pie chart appears, then bar chart appears  
-**Actual Output:** ran successfully with no errors ✅
+**Actual Output:** `ran successfully with no errors ✅`
 
 
-### Test 6: check_budget() — category exceeded the limit
+### Test 6: `check_budget()` — category exceeded the limit
 **Input:** Food budget = 50₪, actual spending = 108.50₪  
-**Expected Output:** string contains "WARNING" and "Food"  
-**Actual Output:** WARNING  Food: spent 108.50 of 50.00 limit ✅
+**Expected Output:** string contains `"WARNING"` and "Food"  
+**Actual Output:** `WARNING  Food: spent 108.50 of 50.00 limit ✅`
 
 **Code snippet used to verify:**
 ```python
@@ -140,10 +145,10 @@ except Exception as e:
 ```
 
 
-### Test 7: search() — case-insensitive keyword match
+### Test 7: `search()` — case-insensitive keyword match
 **Input:** keyword = "LUNCH", description in data = "Cafeteria lunch"  
-**Expected Output:** 1 result returned  
-**Actual Output:** 1 result found ✅
+**Expected Output:** `1` result returned  
+**Actual Output:** `1 result found ✅`
 
 **Code snippet used to verify:**
 ```python
@@ -183,15 +188,16 @@ except Exception as e:
 ## 7. Invidual Contributions
 | Student | ID | Files | Commit Count | GitHub Username |
 |---|---|---|---|---|
-| Yasmeen Ahmad Rafeeq Abuarrah | 202211471 | All files | 15 | Yasmeen-Abu-Arrah |
+| Yasmeen Ahmad Rafeeq Abuarrah | 202211471 | All files | 20 | Yasmeen-Abu-Arrah |
 
 
 ## 8. Challenges & What You Learned
 **Challenge - My Virtual Environment Stopped Working After I Renamed the Folder**
-When I renamed my project folder to include my name. My pip stopped working. I could not use "pip freeze". I found out that the virtual environment remembers the folder path. So when I renamed the folder it broke the environment. To fix this I got rid of the ".venv" and made a new one in the renamed folder. Then I installed matplotlib again before I made "requirements.txt".
+When I renamed my project folder to include my name. `pip` stopped working. I could not use `"pip freeze"`. I found out that the virtual environment remembers the folder path. So when I renamed the folder it broke the environment. To fix this I got rid of the `".venv"` and made a new one in the renamed folder. Then I installed matplotlib again before I made `"requirements.txt".`
 
 **What I Learned**
-I learned about reading and writing CSV files. I also learned about using "dict.get(key, 0)" to add up totals without having to check if something exists. I learned how to make charts with matplotlib and how to make "requirements.txt" using "pip freeze". The project was a learning experience, for me and I got to learn about these new things, like matplotlib and "pip freeze" and how to use them.
+I learned about reading and writing `CSV` files. I also learned about using `"dict.get(key, 0)"` to add up totals without having to check if something exists.  
+I learned how to make charts with matplotlib and how to make `"requirements.txt"` using `"pip freeze"`. The project was a learning experience, for me and I got to learn about these new things, like matplotlib and `"pip freeze"` and how to use them.  
 
 
 ## 9. How to Run

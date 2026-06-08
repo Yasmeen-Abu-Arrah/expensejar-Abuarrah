@@ -68,6 +68,7 @@ ExpenseJar_Abuarra/
 ├── requirements.txt        ← pip freeze output
 ├── report.md               ← Full project report
 ├── README.md               ← readme file project
+├── application.py          ← simple web API 
 └── screenshots/
     ├── category_pie.png
     ├── monthly_bar.png
